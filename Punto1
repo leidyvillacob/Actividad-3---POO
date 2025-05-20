@@ -1,0 +1,75 @@
+class CuentaBancaria:
+    def __init__(self, saldo_inicial=0.0, interes_anual=0.0):
+        self.saldo = saldo_inicial
+        self.interes_anual = interes_anual
+        self.total_consignaciones = 0
+        self.total_retiros = 0
+        self.comision_mensual = 0.0
+
+    def consignar(self, monto):
+        if monto > 0:
+            self.saldo += monto
+            self.total_consignaciones += 1
+
+    def retirar(self, monto):
+        if 0 < monto <= self.saldo:
+            self.saldo -= monto
+            self.total_retiros += 1
+            return True
+        return False
+
+    def aplicar_interes(self):
+        interes_mensual = (self.interes_anual / 12/100) * self.saldo
+        self.saldo += interes_mensual
+
+    def procesar_mes(self):
+        self.saldo -= self.comision_mensual
+        self.aplicar_interes()
+
+    def resumen(self):
+        print(f"Saldo actual: ${self.saldo:.2f}")
+        print(f"Comisión mensual: ${self.comision_mensual}")
+        print(f"Transacciones: {self.total_consignaciones + self.total_retiros}")
+
+
+class CuentaDeAhorros(CuentaBancaria):
+    def __init__(self, saldo_inicial=0.0, interes_anual=0.0):
+        super().__init__(saldo_inicial, interes_anual)
+        self.activa = saldo_inicial >= 10000
+
+    def consignar(self, monto):
+        if self.activa:
+            super().consignar(monto)
+        self.activa = self.saldo >= 10000
+
+    def retirar(self, monto):
+        if self.activa and super().retirar(monto):
+            pass
+        self.activa = self.saldo >= 10000
+
+    def procesar_mes(self):
+        movimientos = self.total_consignaciones + self.total_retiros
+        if movimientos > 4:
+            self.comision_mensual = (movimientos - 4) * 1000
+        super().procesar_mes()
+        self.activa = self.saldo >= 10000
+
+
+def ejecutar_prueba():
+    print("=== Simulación de Cuenta de Ahorros ===")
+    saldo = float(input("Saldo inicial: $"))
+    interes = float(input("Interés anual (%): ").replace(',', '.'))
+    cuenta = CuentaDeAhorros(saldo, interes)
+
+    monto_consignado = float(input("Monto a consignar: $"))
+    cuenta.consignar(monto_consignado)
+
+    monto_retirado = float(input("Monto a retirar: $"))
+    cuenta.retirar(monto_retirado)
+
+    cuenta.procesar_mes()
+    cuenta.resumen()
+
+
+if __name__ == "__main__":
+    ejecutar_prueba()
