@@ -1,0 +1,85 @@
+# ==================== CLASE BASE: INDIVIDUO ====================
+class Individuo:
+    def __init__(self, nombre_completo, ubicacion):
+        self._nombre_completo = nombre_completo
+        self._ubicacion = ubicacion
+
+    def obtener_nombre(self):
+        return self._nombre_completo
+
+    def obtener_ubicacion(self):
+        return self._ubicacion
+
+    def actualizar_nombre(self, nuevo_nombre):
+        self._nombre_completo = nuevo_nombre
+
+    def actualizar_ubicacion(self, nueva_direccion):
+        self._ubicacion = nueva_direccion
+
+
+# ==================== CLASE DERIVADA: ALUMNO ====================
+class Alumno(Individuo):
+    def __init__(self, nombre_completo, ubicacion, programa, nivel):
+        super().__init__(nombre_completo, ubicacion)
+        self._programa = programa
+        self._nivel = nivel
+
+    def obtener_programa(self):
+        return self._programa
+
+    def obtener_nivel(self):
+        return self._nivel
+
+    def actualizar_programa(self, nuevo_programa):
+        self._programa = nuevo_programa
+
+    def actualizar_nivel(self, nuevo_nivel):
+        self._nivel = nuevo_nivel
+
+
+# ==================== CLASE DERIVADA: DOCENTE ====================
+class Docente(Individuo):
+    def __init__(self, nombre_completo, ubicacion, area, grado):
+        super().__init__(nombre_completo, ubicacion)
+        self._area = area
+        self._grado = grado
+
+    def obtener_area(self):
+        return self._area
+
+    def obtener_grado(self):
+        return self._grado
+
+    def actualizar_area(self, nueva_area):
+        self._area = nueva_area
+
+    def actualizar_grado(self, nuevo_grado):
+        self._grado = nuevo_grado
+
+
+# ==================== PRUEBA PRINCIPAL ====================
+def ejecutar_prueba_universitaria():
+    estudiante = Alumno("Lucía Torres", "Carrera 45 #12-34", "Ingeniería Electrónica", 6)
+    profesor = Docente("Dr. Manuel Ruiz", "Calle 98 #45-67", "Ingeniería", "Asociado")
+
+    print("=== Datos del Estudiante ===")
+    print("Nombre:", estudiante.obtener_nombre())
+    print("Programa:", estudiante.obtener_programa())
+    print("Nivel:", estudiante.obtener_nivel())
+    print("Dirección:", estudiante.obtener_ubicacion())
+
+    print("\n=== Datos del Docente ===")
+    print("Nombre:", profesor.obtener_nombre())
+    print("Área:", profesor.obtener_area())
+    print("Grado:", profesor.obtener_grado())
+    print("Dirección:", profesor.obtener_ubicacion())
+
+    # Modificación del semestre del estudiante
+    estudiante.actualizar_nivel(7)
+    print("\n=== Actualización del Nivel del Estudiante ===")
+    print(f"{estudiante.obtener_nombre()} ahora está en el nivel {estudiante.obtener_nivel()}")
+
+
+# Ejecutar la prueba
+if __name__ == "__main__":
+    ejecutar_prueba_universitaria()
