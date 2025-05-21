@@ -1,0 +1,34 @@
+# ==================== SUPERCLASE: DOCENTE ====================
+class Docente:
+    """
+    Clase base Docente que representa a cualquier persona dedicada a la enseñanza.
+    """
+    def mostrar_tipo(self):
+        """
+        Método que muestra el tipo de docente.
+        """
+        print("Es un docente.")
+
+# ==================== SUBCLASE: DOCENTE PERMANENTE ====================
+class DocentePermanente(Docente):
+    """
+    Clase DocentePermanente que hereda de Docente, representando un docente con plaza fija.
+    """
+    def mostrar_tipo(self):
+        """
+        Método sobrescrito que identifica que el objeto es un docente permanente.
+        """
+        print("Es un docente permanente.")
+
+# ==================== FUNCIÓN PRINCIPAL ====================
+def ejecutar_demo_docentes():
+    """
+    Función principal que demuestra el uso del polimorfismo:
+    un objeto declarado como tipo base pero instanciado como tipo derivado.
+    """
+    docente1: Docente = DocentePermanente()  # Polimorfismo
+    docente1.mostrar_tipo()  # Se espera que imprima: "Es un docente permanente."
+
+# Ejecutar la función principal
+if __name__ == "__main__":
+    ejecutar_demo_docentes()
