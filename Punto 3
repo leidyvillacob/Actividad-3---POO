@@ -1,0 +1,98 @@
+# ==================== CLASE BASE ====================
+class Animal:
+    def __init__(self, nombre, edad, tonalidad):
+        self.nombre = nombre
+        self.edad = edad
+        self.tonalidad = tonalidad
+
+# ==================== CLASES DE PERROS ====================
+class Canino(Animal):
+    def __init__(self, nombre, edad, tonalidad, masa, agresivo):
+        super().__init__(nombre, edad, tonalidad)
+        self.masa = masa
+        self.agresivo = agresivo
+
+    @staticmethod
+    def emitir_sonido():
+        print("Los caninos suelen ladrar")
+
+# Perros pequeños
+class CaninoPeque(Canino): pass
+class SchnauzerMini(CaninoPeque): pass
+class FrenchPoodle(CaninoPeque): pass
+class TerrierYorkshire(CaninoPeque): pass
+class Chihuahueño(CaninoPeque): pass
+
+# Perros medianos
+class CaninoMedio(Canino): pass
+class CollieEscoces(CaninoMedio): pass
+class DalmataManchado(CaninoMedio): pass
+class BulldogIngles(CaninoMedio): pass
+class GalgoEspañol(CaninoMedio): pass
+class SabuesoNariz(CaninoMedio): pass
+
+# Perros grandes
+class CaninoGrande(Canino): pass
+class AlemanPastor(CaninoGrande): pass
+class DobermanNegro(CaninoGrande): pass
+class RottweilerFuerte(CaninoGrande): pass
+
+# ==================== CLASES DE GATOS ====================
+class Felino(Animal):
+    def __init__(self, nombre, edad, tonalidad, salto_alto, salto_largo):
+        super().__init__(nombre, edad, tonalidad)
+        self.salto_alto = salto_alto
+        self.salto_largo = salto_largo
+
+    @staticmethod
+    def emitir_sonido():
+        print("Los felinos maúllan y ronronean")
+
+# Gatos sin pelo
+class FelinoCalvo(Felino): pass
+class EsfingeEgipcio(FelinoCalvo): pass
+class GatoElfo(FelinoCalvo): pass
+class DonskoyRuso(FelinoCalvo): pass
+
+# Gatos de pelo corto
+class FelinoCorto(Felino): pass
+class RusoAzul(FelinoCorto): pass
+class BritanicoCorto(FelinoCorto): pass
+class GatoManx(FelinoCorto): pass
+class DevonRexPelo(FelinoCorto): pass
+
+# Gatos de pelo largo
+class FelinoLargo(Felino): pass
+class AngoraTurco(FelinoLargo): pass
+class HimalayoColorpoint(FelinoLargo): pass
+class BalinesOriental(FelinoLargo): pass
+class SomaliAfricano(FelinoLargo): pass
+
+# ==================== PRUEBA PRINCIPAL ====================
+def ejecutar_prueba():
+    # Instancias de perros
+    perro1 = SchnauzerMini("Rocky", 3, "grisáceo", 6.2, True)
+    perro2 = BulldogIngles("Toby", 4, "blanco nieve", 19.0, False)
+    perro3 = AlemanPastor("Simba", 6, "negro intenso", 32.0, True)
+
+    # Instancias de gatos
+    gato1 = EsfingeEgipcio("Lila", 2, "rosado claro", 1.1, 1.4)
+    gato2 = AngoraTurco("Copito", 3, "blanco puro", 0.9, 1.2)
+    gato3 = RusoAzul("Humo", 1, "gris plata", 0.7, 1.0)
+
+    # Mostrar info
+    print(f"{perro1.__class__.__name__}: {perro1.nombre}, {perro1.edad} años, {perro1.tonalidad}, {perro1.masa} kg, agresivo={perro1.agresivo}")
+    print(f"{perro2.__class__.__name__}: {perro2.nombre}, {perro2.edad} años, {perro2.tonalidad}, {perro2.masa} kg, agresivo={perro2.agresivo}")
+    print(f"{perro3.__class__.__name__}: {perro3.nombre}, {perro3.edad} años, {perro3.tonalidad}, {perro3.masa} kg, agresivo={perro3.agresivo}")
+
+    print(f"{gato1.__class__.__name__}: {gato1.nombre}, {gato1.edad} años, {gato1.tonalidad}, salta {gato1.salto_alto}m x {gato1.salto_largo}m")
+    print(f"{gato2.__class__.__name__}: {gato2.nombre}, {gato2.edad} años, {gato2.tonalidad}, salta {gato2.salto_alto}m x {gato2.salto_largo}m")
+    print(f"{gato3.__class__.__name__}: {gato3.nombre}, {gato3.edad} años, {gato3.tonalidad}, salta {gato3.salto_alto}m x {gato3.salto_largo}m")
+
+    # Sonidos
+    SchnauzerMini.emitir_sonido()
+    EsfingeEgipcio.emitir_sonido()
+
+# Ejecutar
+if __name__ == "__main__":
+    ejecutar_prueba()
